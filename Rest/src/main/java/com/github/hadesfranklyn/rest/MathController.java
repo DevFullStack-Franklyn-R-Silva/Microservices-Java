@@ -11,7 +11,7 @@ import com.github.hadesfranklyn.rest.exception.UnsupportedMathOperationException
 public class MathController {
 
 	@RequestMapping(value = "/sum/{numberOne}/{numberTwo}", method = RequestMethod.GET)
-	public Double greeting(@PathVariable("numberOne") String numberOne, @PathVariable("numberTwo") String numberTwo)
+	public Double sum(@PathVariable("numberOne") String numberOne, @PathVariable("numberTwo") String numberTwo)
 			throws Exception {
 		if (!isNumeric(numberOne) || !isNumeric(numberTwo)) {
 			throw new UnsupportedMathOperationException("Please set a numeric value!");
@@ -19,6 +19,60 @@ public class MathController {
 		Double sum = convertToDouble(numberOne) + convertToDouble(numberTwo);
 
 		return sum;
+	}
+
+	@RequestMapping(value = "/subtraction/{numberOne}/{numberTwo}", method = RequestMethod.GET)
+	public Double subtraction(@PathVariable("numberOne") String numberOne, @PathVariable("numberTwo") String numberTwo)
+			throws Exception {
+		if (!isNumeric(numberOne) || !isNumeric(numberTwo)) {
+			throw new UnsupportedMathOperationException("Please set a numeric value!");
+		}
+		Double subtraction = convertToDouble(numberOne) - convertToDouble(numberTwo);
+
+		return subtraction;
+	}
+
+	@RequestMapping(value = "/multiplication/{numberOne}/{numberTwo}", method = RequestMethod.GET)
+	public Double multiplication(@PathVariable("numberOne") String numberOne,
+			@PathVariable("numberTwo") String numberTwo) throws Exception {
+		if (!isNumeric(numberOne) || !isNumeric(numberTwo)) {
+			throw new UnsupportedMathOperationException("Please set a numeric value!");
+		}
+		Double multiplication = convertToDouble(numberOne) * convertToDouble(numberTwo);
+
+		return multiplication;
+	}
+
+	@RequestMapping(value = "/division/{numberOne}/{numberTwo}", method = RequestMethod.GET)
+	public Double division(@PathVariable("numberOne") String numberOne, @PathVariable("numberTwo") String numberTwo)
+			throws Exception {
+		if (!isNumeric(numberOne) || !isNumeric(numberTwo)) {
+			throw new UnsupportedMathOperationException("Please set a numeric value!");
+		}
+		Double division = convertToDouble(numberOne) / convertToDouble(numberTwo);
+
+		return division;
+	}
+
+	@RequestMapping(value = "/mean/{numberOne}/{numberTwo}", method = RequestMethod.GET)
+	public Double mean(@PathVariable("numberOne") String numberOne, @PathVariable("numberTwo") String numberTwo)
+			throws Exception {
+		if (!isNumeric(numberOne) || !isNumeric(numberTwo)) {
+			throw new UnsupportedMathOperationException("Please set a numeric value!");
+		}
+		Double mean = convertToDouble(numberOne) + convertToDouble(numberTwo) / 2;
+
+		return mean;
+	}
+
+	@RequestMapping(value = "/squareRoot/{numberOne}", method = RequestMethod.GET)
+	public Double squareRoot(@PathVariable("numberOne") String numberOne) throws Exception {
+		if (!isNumeric(numberOne)) {
+			throw new UnsupportedMathOperationException("Please set a numeric value!");
+		}
+		Double squareRoot = (Double) Math.sqrt(convertToDouble(numberOne));
+
+		return squareRoot;
 	}
 
 	private Double convertToDouble(String strNumber) {
